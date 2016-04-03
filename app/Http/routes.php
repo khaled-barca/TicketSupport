@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * Add A New Reply
+ */
+Route::post('Tickets/{ticketId}/Reply', 'TicketReplyController@store');
