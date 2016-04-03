@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('ticket/{id}/handle', [
+    'as'    => 'assign', //php artisan make:controller AyahController
+    'uses'  =>  'TestController@test'
+]);
