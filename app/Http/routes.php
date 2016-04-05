@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','HomeController@index');
+Route::get('/index2','HomeController@index2');
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
+
+Route::resource('users','UsersController');
+Route::resource('tickets','TicketsController');
+Route::resource('projects','ProjectsController');
+Route::resource('customers','CustomersController');
+Route::resource('ticket_replies','TicketRepliesController');

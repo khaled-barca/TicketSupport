@@ -16,7 +16,7 @@ class CreateTicketsTable extends Migration
             $table->increments('id');
             $table->string('body');
             $table->enum("status",["Opened", "Closed", "In Progress"]);
-            $table->integer('urgency');
+            $table->integer('urgency')->nullable();
             $table->date("progress_date")->nullable();
             $table->date("end_date")->nullable();
             $table->integer('project_id')->unsigned();

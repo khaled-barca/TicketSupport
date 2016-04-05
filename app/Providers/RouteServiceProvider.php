@@ -38,7 +38,10 @@ class RouteServiceProvider extends ServiceProvider
     public function map(Router $router)
     {
         $this->mapWebRoutes($router);
-
+        $router->model('customers','App\Customer');
+        $router->model('tickets','App\Ticket');
+        $router->model('projects','App\Project');
+        $router->model('users','App\User');
         //
     }
 
