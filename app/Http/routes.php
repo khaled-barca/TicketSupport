@@ -23,4 +23,4 @@ Route::resource('users','UsersController');
 Route::resource('tickets','TicketsController');
 Route::resource('projects','ProjectsController');
 Route::resource('customers','CustomersController');
-Route::resource('ticket_replies','TicketRepliesController');
+Route::resource('tickets.ticket_replies','TicketRepliesController');
