@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Enums\UserRoles;
 
 class User extends Authenticatable
 {
@@ -24,23 +25,29 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected  $dates = ['date_of_birth'];
+
     public function isAdministrator(){
-        return $this->role == \UserRoles::Administrator;
+        return $this->role == UserRoles::Administrator;
     }
 
     public function isSupportAgent(){
-        return $this->role == \UserRoles::SupportAgent;
+        return $this->role == UserRoles::SupportAgent;
     }
 
     public function isSupportSupervisor(){
-        return $this->role == \UserRoles::SupportSupervisor;
+        return $this->role == UserRoles::SupportSupervisor;
     }
 
     public function tickets(){
-        return $this->hasMany('App\Ticket');
+        return $this->hasMany('App\Ticket','support_id');
     }
 
     public function ticketReplies(){
         return $this->hasMany('App\TicketReply');
+    }
+
+    public function fullName(){
+        return $this->firstName . ' ' . $this->lastName;
     }
 }
