@@ -24,11 +24,15 @@ Route::resource('tickets','TicketsController');
 Route::resource('projects','ProjectsController');
 Route::resource('customers','CustomersController');
 Route::resource('ticket_replies','TicketRepliesController');
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::post('ticket/{id}/handle', [
+
+Route::get('ticket/{id}/handle', [
     'as'    => 'assign', //php artisan make:controller AyahController
     'uses'  =>  'TestController@test'
 ]);
+
+Route::get('Users/claimTicket/{TicketId}', [
+    'as'    => 'assign', //php artisan make:controller AyahController
+    'uses'  =>  'UsersController@claimTicket'
+]);
+//w

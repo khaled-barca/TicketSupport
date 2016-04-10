@@ -53,18 +53,7 @@
                             <!-- chat item -->
                             @include('partials.ticket')
 
-                            <hr>
-                            <!-- chat item -->
-                            @include('partials.ticket')
-
-                            <hr>
-                            <!-- chat item -->
-                            @include('partials.ticket')
-
-                            <hr>
-
-                            @include('partials.ticket')
-
+  
 
                         </div>
                         <!-- /.chat -->
