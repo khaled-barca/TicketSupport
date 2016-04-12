@@ -11,14 +11,15 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-    @include('partials.home.header')
+    @include('partials.master.header')
     <!-- Left side column. contains the logo and sidebar -->
-    @include('partials.home.sidebar')
+    @include('partials.master.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+            @include('partials.flash')
             <h1>
                 @yield("header")
             </h1>
@@ -28,7 +29,6 @@
         <section class="content">
             <!-- Small boxes (Stat box) -->
             <!-- Main row -->
-
             <div class="row">
                 <!-- Left col -->
                 <section class="col-lg-12 connectedSortable">
@@ -50,10 +50,10 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    @include('partials.home.footer')
+    @include('partials.master.footer')
 
     <!-- Control Sidebar -->
-    @include('partials.home.darkSidebar')<!-- /.control-sidebar -->
+    @include('partials.master.darkSidebar')<!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
