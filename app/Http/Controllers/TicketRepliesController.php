@@ -18,7 +18,7 @@ class TicketRepliesController extends Controller
         $ticketReply->ticket_id = $ticket->id;
         $ticketReply->user_id = Auth::user();
         $ticketReply->save();
-        return redirect(action('HomeController@index2'));
+        return redirect(action('TicketsController@show',$ticket));
     }
      public function create(Ticket $ticket){
         return view('ticket_replies.create')->with('ticket', $ticket);
