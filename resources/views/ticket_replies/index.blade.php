@@ -1,6 +1,6 @@
-@extends('app')
+@extends('master')
 
-@section('content')
+@section('body')
     <!-- Create Task Form... -->
 
     <!-- Current Tasks -->
