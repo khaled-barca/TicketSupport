@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateProjectRequest;
 use App\Project;
-
+use App\Ticket;
+use App\User;
 class ProjectsController extends Controller
 {
     //
@@ -15,18 +16,44 @@ class ProjectsController extends Controller
         $project = new Project;
         $project->name = $request->name;
         $project->save();
-        return redirect(action('HomeController@index2'));
+        $tickets = array();
+        $users = array();
+        return view('projects.show', [
+        'tickets' => $tickets,
+        'project' => $project,
+        'users' => $users
+    ]);
     }
         public function create(){
         return view('projects.create');
     }
         public function show(Project $project){
-        return view('project');
+        $tickets = Ticket::where('project_id',$project->id)->get();
+        $users = array();
+            foreach($tickets as $ticket){
+                $user = User::find($ticket->support_id);
+                array_push($users,$user);
+        }
+        return view('projects.show', [
+        'tickets' => $tickets,
+        'project' => $project,
+        'users' => $users
+    ]);
     }        
         public function update(CreateProjectRequest $request, Project $project){
         $project->name = $request->name;
         $project->save();
-        return redirect(action('HomeController@index2'));
+        $tickets = Ticket::where('project_id',$project->id)->get();
+        $users = array();
+            foreach($tickets as $ticket){
+                $user = User::find($ticket->support_id);
+                array_push($users,$user);
+        }
+         return view('projects.show', [
+        'tickets' => $tickets,
+        'project' => $project,
+        'users' => $users
+    ]);
     }
         public function destroy(Project $project){
         $project->delete();
