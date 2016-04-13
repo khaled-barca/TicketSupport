@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\TicketReply;
 use App\Http\Requests;
 use App\Http\Requests\CreateTicketReplyRequest;
+use Auth;
 
 class TicketRepliesController extends Controller
 {
@@ -16,7 +17,7 @@ class TicketRepliesController extends Controller
         $ticketReply = new TicketReply;
         $ticketReply->reply = $request->reply;
         $ticketReply->ticket_id = $ticket->id;
-        $ticketReply->user_id = Auth::user();
+        $ticketReply->user_id = Auth::user()->id;
         $ticketReply->save();
         return redirect(action('TicketsController@show',$ticket));
     }
