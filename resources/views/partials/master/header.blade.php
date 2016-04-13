@@ -60,21 +60,20 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/bower_components/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">{{Auth::user()->fullName()}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
                             <img src="{{asset('/bower_components/AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {{Auth::user()->fullName()}}
                             </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="{{url('auth/logout')}}" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                             <div class="pull-right">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
@@ -83,44 +82,6 @@
                     </ul>
                 </li>
 
-
-                <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="hidden-xs">LogIn</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="user-header">
-                            <p>
-                            <form method="Post">
-                                <div class="form-group">
-
-                                    <label class="col-md-4 control-label">Username</label>
-                                    <div class="col-md-8">
-                                        <input type="email" class="form-control input-md" name="email" >
-                                    </div>
-                                </div>
-
-                                <br/>
-                                <br/>
-                                <br/>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" class="form-control" name="password">
-                                    </div>
-                                </div>
-                            </p>
-                        </li>
-                        <!-- Menu Body -->
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <div class="text-center">
-                                <a href="#" class="btn btn-default btn-flat">Sign In</a>
-                            </div>
-                        </li>
-                    </ul>
-                    </form>
-                </li>
                 <!-- Control Sidebar Toggle Button -->
             </ul>
         </div>

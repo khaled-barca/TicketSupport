@@ -7,7 +7,7 @@
                 <img src="{{asset('/bower_components/AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{{Auth::user()->fullName()}}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -27,13 +27,12 @@
             <li><a href="#"><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Departments</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-dashboard"></i> <span>Projects</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Mobinil</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Vodafone v2</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Etisalat v2</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> TE Data v2</a></li>
+                    @foreach($projects as $project)
+                        <li><a href="{{route('projects.show',[$project->id])}}"><i class="fa fa-circle-o"></i>{{$project->name}}</a></li>
+                    @endforeach
                 </ul>
             </li>
             <li><a href="#"><i class="fa fa-book"></i> <span>Tweets</span></a></li>

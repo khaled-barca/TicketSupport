@@ -13,6 +13,6 @@ class Customer extends Model
     }
 
     public function fullName(){
-        return $this->firstName . ' ' . $this->lastName;
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 }
