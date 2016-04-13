@@ -1,7 +1,7 @@
 
-@extends('app')
+@extends('master')
 
-@section('content')
+@section('body')
 <!DOCTYPE html>
 <html>
   <head>

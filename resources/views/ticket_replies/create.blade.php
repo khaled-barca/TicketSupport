@@ -1,8 +1,8 @@
 <!-- resources/views/ticket_replies/create.blade.php -->
 
-@extends('app')
+@extends('master')
 
-@section('content')
+@section('body')
 
     <!-- Bootstrap Boilerplate... -->
 
