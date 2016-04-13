@@ -6,7 +6,6 @@ use App\Project;
 use App\Ticket;
 use Illuminate\Http\Request;
 use Auth;
-
 use App\Http\Requests;
 
 class HomeController extends Controller
@@ -18,13 +17,12 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $projects = Project::all();
         $tickets = Ticket::all();
         if(strpos(redirect()->back()->getTargetUrl(),'login') === false){
-            return view('home.index',compact('projects','tickets'));
+            return view('home.index',compact('tickets'));
         }
         else{
-            return view('home.index',compact('projects','tickets'))->with('message','Welcome '. Auth::user()->fullName());
+            return view('home.index',compact('tickets'))->with('message','Welcome '. Auth::user()->fullName());
         }
     }
 
