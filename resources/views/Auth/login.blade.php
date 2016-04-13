@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Sign In</title>
     <!-- Tell the browser to be responsive to screen width -->
     @include('partials.css')
     <![endif]-->
@@ -21,6 +21,7 @@
     <section class="content">
         <!-- Small boxes (Stat box) -->
         <!-- Main row -->
+        @include('partials.flash')
 
         <div class="row">
             <!-- Left col -->
@@ -39,16 +40,26 @@
 
                             <label class="col-md-4 control-label">Email</label>
 
-                            <div class="col-md-2">
-                                <input type="email" class="form-control input-md" name="email">
+                            <div class="col-md-3">
+                                <input type="email" class="form-control input-md" name="email" value="{{old('email')}}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Password</label>
 
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <input type="password" class="form-control" name="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember"> Remember Me
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
