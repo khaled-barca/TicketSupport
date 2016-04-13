@@ -30,9 +30,7 @@
                     <i class="fa fa-dashboard"></i> <span>Projects</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    @foreach($projects as $project)
-                        <li><a href="{{route('projects.show',[$project->id])}}"><i class="fa fa-circle-o"></i>{{$project->name}}</a></li>
-                    @endforeach
+
                 </ul>
             </li>
             <li><a href="#"><i class="fa fa-book"></i> <span>Tweets</span></a></li>
