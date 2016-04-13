@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\TicketReply;
 use App\Http\Requests;
 use App\Http\Requests\CreateTicketReplyRequest;
-
+use Auth;
 class TicketRepliesController extends Controller
 {
     //
