@@ -57,7 +57,7 @@ class ProjectsController extends Controller
     }
         public function destroy(Project $project){
         $project->delete();
-        return redirect(action('HomeController@index2'));
+        return redirect(action('HomeController@index'));
     }
         public function edit(Project $project){
          return view('projects.edit')

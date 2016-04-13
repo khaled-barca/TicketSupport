@@ -1,8 +1,8 @@
 <!-- resources/views/projects/edit.blade.php -->
 
-@extends('app')
+@extends('master')
 
-@section('content')
+@section('body')
 
     <!-- Bootstrap Boilerplate... -->
 

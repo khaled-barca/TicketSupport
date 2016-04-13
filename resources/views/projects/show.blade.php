@@ -1,5 +1,5 @@
-@extends('app')
-@section('content')
+@extends('master')
+@section('body')
         <!-- Main content -->
         <section class="content">
             <!-- Small boxes (Stat box) -->
