@@ -85,9 +85,16 @@
 
                 </div>
               </div>
-          <a href="#">Add Ticket<a>
-          <a href="#">Edit Ticket<a>
-          <a href="#">Delete Ticket<a>
+            {{ Form::open(array('route' => array('tickets.edit', $ticket->id), 'method' => 'GET')) }}
+
+                {{ Form::submit('Edit ticket') }}
+
+            {{ Form::close() }}
+            {{ Form::open(array('route' => array('tickets.destroy', $ticket->id), 'method' => 'DELETE')) }}
+                {{ method_field('DELETE') }}
+                {{ Form::submit('Delete ticket') }}
+
+            {{ Form::close() }}
                </body>
 </html>
 @endsection

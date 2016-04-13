@@ -39,4 +39,8 @@ class TicketsController extends Controller
         $ticket->save();
         return redirect(action('HomeController@index'));
     }
+    public function destroy(Ticket $ticket){
+        $ticket->delete();
+        return redirect(action('HomeController@index'));
+    }
 }
