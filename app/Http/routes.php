@@ -23,3 +23,6 @@ Route::resource('tickets','TicketsController');
 Route::resource('projects','ProjectsController');
 Route::resource('customers','CustomersController');
 Route::resource('tickets.ticket_replies','TicketRepliesController');
+Route::get('paypal','PaypalController@getCheckout');
+Route::get('finish','PaypalController@getDone');
+Route::post('cancel','PaypalController@getCancel');
