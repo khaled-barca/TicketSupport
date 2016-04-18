@@ -18,6 +18,7 @@
 
                 <div class="col-sm-6">
                 <select name="support_id" class="form-control">
+                  <option name="support_id" value =""</option>
                     @foreach($agents as $agent)
                   <option name="support_id" value ={{$agent->id}}>{{$agent->first_name}} {{$agent->last_name}}</option>
                     @endforeach
@@ -29,7 +30,7 @@
                 <label for="body" class="col-sm-6 control-label">Body</label>
                 
                  <div class="col-sm-6">
-                    <input type="text" name="body" id="body" class="form-control" value={{$ticket->body}}>
+                    <input type="text" name="body" id="body" class="form-control" value="<?php echo $ticket->body; ?>">
                 </div>
             </div>
                 <div class="form-group">

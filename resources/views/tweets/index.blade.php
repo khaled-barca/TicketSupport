@@ -15,7 +15,7 @@
 
                     <!-- Table Headings -->
                     <thead>
-                        <th>Replies</th>
+                        <th>Issues</th>
                         <th>&nbsp;</th>
                     </thead>
 
@@ -24,23 +24,21 @@
                         @for ($i = 0; $i < count($tweets); $i++)
                             <tr>
                                 <!-- Task Name -->
-                                <td class="table-text">
-                                    <div>{{ $tweets[$i]['user']['name'] }}</div>
+                                <td>
+                                    <p>{{ $tweets[$i]['user']['name'] }}</p>
                                 </td>
 
                                 <td>
-                                    <div>{{ $tweets[$i]['text'] }}</div>
-                                </td>                                          
-                                @for($j = 0;$j < count($result);$j++)
-                                <td><p>{{$result[$j]['user']['name']}}</p>
-                                    <p>{{$result[$j]['text']}}</p>
-                                </td>
-                                @endfor       
+                                    <p>{{ $tweets[$i]['text'] }}</p>
+                                </td>                                   
+                            </tr>      
+     
+                         <tr>
                             {{ Form::open(array('route' => array('customers.store'), 'method' => 'POST')) }}
                                 {!! csrf_field() !!}
                                
                                 <!-- Task Name -->
-
+                                <td>
                                  <div class="form-group">
                                     
                                      <div class="col-sm-6">
@@ -51,9 +49,10 @@
                                  <div class="form-group">
                                     
                                      <div class="col-sm-6">
-                                        <input type="hidden" name="body" id="body" class="form-control" value ={{ $tweets[$i]['text'] }} >
+                                        <input type="hidden" name="body" id="body" class="form-control" value ="<?php echo $tweets[$i]['text']; ?>">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     
                                      <div class="col-sm-6">
@@ -71,13 +70,34 @@
                                
 
 
-
                                 </td>
+                                        {{ Form::close() }}
                             </tr>
-                        @endfor
-                         {{ Form::close() }}
+                 
+
+
                     </tbody>
                 </table>
+                <table>
+                                        <!-- Table Headings -->
+                    <thead>
+                        <th>Replies</th>
+                        <th>&nbsp;</th>
+                    </thead>
+                    <tdbody>
+                           @for($j = 0;$j < count($result);$j++)
+                                <tr>
+                                    <td>
+                                    <p>{{$result[$j]['user']['name']}}</p>
+                                    </td>
+                                    <td>
+                                    <p>{{$result[$j]['text']}}</p>
+                                    </td>
+                                </tr>
+                                @endfor  
+                    </tbody>
+                </table>
+                @endfor
             </div>
         </div>
     @endif
