@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Paypal;
 use Redirect;
+use App\Customer;
 class PaypalController extends Controller
 {
     private $_apiContext;
@@ -26,11 +27,12 @@ class PaypalController extends Controller
         ));
 
     }
-    public function getCheckout()
-    {
+    public function getCheckout(Customer $customer)
+    {    
     $payer = Paypal::Payer();
     $payer->setPaymentMethod('paypal');
-
+    $customer->premium_support = 1;
+    $customer->save();
 
     $item1 = PayPal::Item();
     $item1->setName('Premium Support')
@@ -60,7 +62,7 @@ class PaypalController extends Controller
     $transaction->setDescription('Premium Support');
     $transaction->setItemList($itemList);
     $redirectUrls = PayPal:: RedirectUrls();
-    $redirectUrls->setReturnUrl(action('PaypalController@getDone'));
+    $redirectUrls->setReturnUrl(action('PaypalController@getDone',$customer));
     $redirectUrls->setCancelUrl(action('PaypalController@getCancel'));
 
     $payment = PayPal::Payment();
@@ -74,7 +76,7 @@ class PaypalController extends Controller
 
     return Redirect::to( $redirectUrl );
     }
-    public function getDone(Request $request)
+    public function getDone(Request $request,Customer $customer)
     {
     $id = $request->get('paymentId');
     $token = $request->get('token');
@@ -93,7 +95,7 @@ class PaypalController extends Controller
     return view('checkout.done');
     }
 
-    public function getCancel()
+    public function getCancel(Customer $customer)
     {
         // Curse and humiliate the user for cancelling this most sacred payment (yours)
         return view('checkout.cancel');
