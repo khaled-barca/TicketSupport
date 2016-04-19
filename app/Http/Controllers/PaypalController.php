@@ -29,6 +29,9 @@ class PaypalController extends Controller
     }
     public function getCheckout(Customer $customer)
     {    
+    if($customer->premium_support==1){
+        return view('checkout.denied');
+    }    
     $payer = Paypal::Payer();
     $payer->setPaymentMethod('paypal');
     $customer->premium_support = 1;

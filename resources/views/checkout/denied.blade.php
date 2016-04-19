@@ -2,7 +2,7 @@
 <html>
 <h2 style="text-align:center;padding-top:20px;">
 
-Purchase cancelled!
+You've already purchased premium support!
 
 </h2>
 
