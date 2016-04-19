@@ -20,7 +20,7 @@ class CreateTicketsTable extends Migration
             $table->date("progress_date")->nullable();
             $table->date("end_date")->nullable();
             $table->integer('project_id')->unsigned();
-            $table->integer('support_id')->unsigned();
+            $table->integer('support_id')->unsigned()->nullable();
             $table->integer('customer_id')->unsigned();
 
             $table->foreign('customer_id')
