@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateTicketReplyRequest;
 use Auth;
 use \Twitter;
+use App\Customer;
 
 class TicketRepliesController extends Controller
 {
@@ -20,7 +21,8 @@ class TicketRepliesController extends Controller
         $ticketReply->ticket_id = $ticket->id;
         $ticketReply->user_id = Auth::user()->id;
         $ticketReply->save();
-        $tweet = '@mohamedzayan8' . ' ' . $request->reply;
+        $customer = Customer::find($ticket->customer_id);
+        $tweet = '@'. $customer->screen_name . ' ' . $request->reply;
         Twitter::postTweet(['status' => $tweet, 'format' => 'json','in_reply_to_status_id'=>$ticket->status_id]);
         return redirect(action('TicketsController@show',$ticket));
     }

@@ -42,7 +42,13 @@
                                  <div class="form-group">
                                     
                                      <div class="col-sm-6">
-                                        <input type="hidden" name="first_name" id="body" class="form-control" value ={{ $tweets[$i]['user']['name']}} >
+                                        <input type="hidden" name="name" id="body" class="form-control" value ="<?php echo $tweets[$i]['user']['name']; ?>" >
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    
+                                     <div class="col-sm-6">
+                                        <input type="hidden" name="screen_name" id="body" class="form-control" value ="<?php echo $tweets[$i]['user']['screen_name']; ?>" >
                                     </div>
                                 </div>
 

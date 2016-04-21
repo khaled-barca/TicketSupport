@@ -14,9 +14,8 @@ class TwitterController extends Controller
 {
     //
         public function receive(){
-            Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json']);
+            Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json', 'contributor_details' => true]);
             $tweets = json_decode(Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json']), true);  
-            #return Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json']);
             $temp = array();
             $result = array();
             for($i = 0;$i<count($tweets);$i++){

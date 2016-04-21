@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPremiumSupportToCustomersTable extends Migration
+class AddScreenNameToCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddPremiumSupportToCustomersTable extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
             //
-            $table->boolean('premium_support');
+            $table->string('screen_name');
         });
     }
 
