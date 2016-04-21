@@ -34,8 +34,6 @@ class PaypalController extends Controller
     }    
     $payer = Paypal::Payer();
     $payer->setPaymentMethod('paypal');
-    $customer->premium_support = 1;
-    $customer->save();
 
     $item1 = PayPal::Item();
     $item1->setName('Premium Support')
@@ -91,7 +89,8 @@ class PaypalController extends Controller
 
     $paymentExecution->setPayerId($payer_id);
     $executePayment = $payment->execute($paymentExecution, $this->_apiContext);
-
+    $customer->premium_support = 1;
+    $customer->save();
     // Clear the shopping cart, write to database, send notifications, etc.
 
     // Thank the user for the purchase
