@@ -20,7 +20,7 @@
                 <label for="task-name" class="col-sm-3 control-label">Project name</label>
 
                 <div class="col-sm-6">
-                    <input type="text" name="name" id="task-name" class="form-control">
+                    <input type="text" name="name" id="task-name" class="form-control" value="{{$project->name}}">
                 </div>
             </div>
 
