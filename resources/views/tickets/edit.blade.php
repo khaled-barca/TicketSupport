@@ -30,7 +30,7 @@
                 <label for="body" class="col-sm-6 control-label">Body</label>
                 
                  <div class="col-sm-6">
-                    <input type="text" name="body" id="body" class="form-control">
+                    <input type="text" name="body" id="body" class="form-control" value="<?php echo $ticket->body; ?>">
                 </div>
             </div>
                 <div class="form-group">

@@ -13,14 +13,9 @@ class CustomersController extends Controller
 {
     //
        public function store(CreateCustomerRequest $request){
-        $customer = new Customer;
         $name = $request->name;
         $names = explode(" ", $name);
-        $customer->first_name = $names[0];
-        $customer->last_name = $names[1];
-        $customer->screen_name = $request->screen_name;
-        $customer->phone = 123456;
-        $customer->save();
+        $customer = Customer::firstOrCreate(['first_name' => $names[0],'last_name' => $names[1],'screen_name'=> $request->screen_name,'phone'=>123456]);
         $ticket = new Ticket;
         $ticket->customer_id = $customer->id;
         $ticket->body = $request->body;
