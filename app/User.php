@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Enums\UserRoles;
+use App\Enums\Genders;
 
 class User extends Authenticatable
 {
@@ -39,6 +40,10 @@ class User extends Authenticatable
         return $this->role == UserRoles::SupportSupervisor;
     }
 
+    public function isMale(){
+        return $this->gender == Genders::Male;
+    }
+
     public function tickets(){
         return $this->hasMany('App\Ticket','support_id');
     }
@@ -50,4 +55,5 @@ class User extends Authenticatable
     public function fullName(){
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
+
 }
