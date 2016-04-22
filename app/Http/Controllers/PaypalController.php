@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Paypal;
 use Redirect;
-use App\Customer;
+use App\Ticket;
 class PaypalController extends Controller
 {
     private $_apiContext;
@@ -27,9 +27,9 @@ class PaypalController extends Controller
         ));
 
     }
-    public function getCheckout(Customer $customer)
+    public function getCheckout(Ticket $ticket)
     {    
-    if($customer->premium_support==1){
+    if($ticket->premium_support==1){
         return view('checkout.denied');
     }    
     $payer = Paypal::Payer();
@@ -63,7 +63,7 @@ class PaypalController extends Controller
     $transaction->setDescription('Premium Support');
     $transaction->setItemList($itemList);
     $redirectUrls = PayPal:: RedirectUrls();
-    $redirectUrls->setReturnUrl(action('PaypalController@getDone',$customer));
+    $redirectUrls->setReturnUrl(action('PaypalController@getDone',$ticket));
     $redirectUrls->setCancelUrl(action('PaypalController@getCancel'));
 
     $payment = PayPal::Payment();
@@ -77,7 +77,7 @@ class PaypalController extends Controller
 
     return Redirect::to( $redirectUrl );
     }
-    public function getDone(Request $request,Customer $customer)
+    public function getDone(Request $request,Ticket $ticket)
     {
     $id = $request->get('paymentId');
     $token = $request->get('token');
@@ -89,15 +89,15 @@ class PaypalController extends Controller
 
     $paymentExecution->setPayerId($payer_id);
     $executePayment = $payment->execute($paymentExecution, $this->_apiContext);
-    $customer->premium_support = 1;
-    $customer->save();
+    $ticket->premium_support = 1;
+    $ticket->save();
     // Clear the shopping cart, write to database, send notifications, etc.
 
     // Thank the user for the purchase
     return view('checkout.done');
     }
 
-    public function getCancel(Customer $customer)
+    public function getCancel(Ticket $ticket)
     {
         // Curse and humiliate the user for cancelling this most sacred payment (yours)
         return view('checkout.cancel');
