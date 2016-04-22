@@ -65,6 +65,8 @@
                                         <input type="hidden" name="status_id" id="body" class="form-control" value ={{ $tweets[$i]['id'] }} >
                                     </div>
                                 </div>
+                                <?php $list = \App\Ticket::where('body', '=', $tweets[$i]['text'])->first() ?>
+                                @if(!$list)
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-6">
                                         <button type="submit" class="btn btn-default">
@@ -72,7 +74,7 @@
                                         </button>
                                     </div>
                                 </div>
-
+                                @endif
                                
 
 
