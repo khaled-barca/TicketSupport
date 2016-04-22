@@ -23,3 +23,9 @@ Route::resource('tickets','TicketsController');
 Route::resource('projects','ProjectsController');
 Route::resource('customers','CustomersController');
 Route::resource('tickets.ticket_replies','TicketRepliesController');
+Route::get('twitter', 'TwitterController@receive');
+Route::get('tweet', 'TicketRepliesController@tweet');
+Route::get('test', function()
+{
+    return Twitter::getSearch(array('q' => 'secretsocial', 'count' => 100, 'format' => 'array'));
+});

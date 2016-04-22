@@ -10,22 +10,10 @@
         <!-- Display Validation Errors -->
 
         <!-- New Task Form -->
-        {{ Form::open(array('route' => array('tickets.update', $ticket->id), 'method' => 'PUT')) }}
+        {{ Form::open(array('route' => array('tickets.store'), 'method' => 'POST')) }}
             {!! csrf_field() !!}
-            {{ method_field('PUT')}}
             <!-- Task Name -->
-            <div class="form-group">
-                <label for="task-reply" class="col-sm-6 control-label">Support Agent</label>
 
-                <div class="col-sm-6">
-                <select name="support_id" class="form-control">
-                    @foreach($agents as $agent)
-                  <option name="support_id" value ={{$agent->id}}>{{$agent->first_name}} {{$agent->last_name}}</option>
-                    @endforeach
-                </select>
-                    
-                </div>
-            </div>
              <div class="form-group">
                 <label for="body" class="col-sm-6 control-label">Body</label>
                 
@@ -50,8 +38,31 @@
                   <option name= "urgency" id="urgency">2</option>
                 </select>
                 </div>
+            <div class="form-group"> 
+            <label for="project_id" class="col-sm-6 control-label">Project</label>  
+            <div class="col-sm-6">
+                <select name="project_id" class="form-control">
+                    @foreach($projects as $project)
+                  <option name="project_id" value ={{$project->id}}>{{$project->name}}</option>
+                    @endforeach
+                </select>
+                    
+                </div>
+              </div>
 
+              <div class="form-group">
+                
+                 <div class="col-sm-6">
+                      <input type="hidden" name="customer_id"  class ="form-control" value={{$ticket->customer_id}}>
+                </div>
+            </div>
 
+             <div class="form-group">
+                
+                 <div class="col-sm-6">
+                      <input type="hidden" name="status_id"  class ="form-control" value={{$ticket->status_id}}>
+                </div>
+            </div> 
             <!-- Add Task Button -->
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">

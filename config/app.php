@@ -157,6 +157,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        'Thujohn\Twitter\TwitterServiceProvider',
 
     ],
 
@@ -205,7 +206,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
+        'Twitter' => 'Thujohn\Twitter\Facades\Twitter',
     ],
 
 ];
