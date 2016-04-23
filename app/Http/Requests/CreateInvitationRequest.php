@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class CreateCustomerRequest extends Request
+class CreateInvitationRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,8 @@ class CreateCustomerRequest extends Request
             //
             'first_name' => ['required','min:2','max:15'],
             'last_name' => ['required','min:2','max:15'],
-            'phone' => ['required','max:15','min:10']
+            'email' => 'required|email|max:255|unique:invitations',
+            'role' => 'required'
         ];
     }
 }

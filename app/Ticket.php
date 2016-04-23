@@ -34,4 +34,8 @@ class Ticket extends Model
     public function scopeInProgress($query){
         return $query->where('status',TicketStatus::InProgress);
     }
+
+    public function isNotAssigned(){
+        return $this->support()->get()->first() == null;
+    }
 }

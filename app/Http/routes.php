@@ -23,3 +23,6 @@ Route::resource('tickets','TicketsController');
 Route::resource('projects','ProjectsController');
 Route::resource('customers','CustomersController');
 Route::resource('tickets.ticket_replies','TicketRepliesController');
+Route::get('/invitations/create','InvitationsController@create');
+Route::post('/invitations/store','InvitationsController@store');
+Route::get('/invitations/{token}','InvitationsController@accept');

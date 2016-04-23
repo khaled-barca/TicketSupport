@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Invitation;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -49,9 +50,13 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'first_name' => ['required','min:2','max:15'],
+            'last_name' => ['required','min:2','max:15'],
+            'gender' => 'required',
+            'date_of_birth' => 'required|date',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'role' => 'required'
         ]);
     }
 
@@ -63,10 +68,18 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user =  User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'gender' => $data['gender'],
+            'date_of_birth' => $data['date_of_birth'],
             'email' => $data['email'],
+            'role' => $data['role'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $invitation = Invitation::where('email',$data['email'])->get()->first();
+        $user->invitation()->save($invitation);
+        return $user;
     }
 }
