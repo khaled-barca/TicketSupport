@@ -35,12 +35,10 @@ class UsersController extends Controller
         $validations = [
             'first_name' => ['required','min:2','max:15'],
             'last_name' => ['required','min:2','max:15'],
-            'gender' => 'required',
             'date_of_birth' => 'required|date'
         ];
         $this->validate($request,$validations);
         $user->update($request->all());
-        $user->setGenderAttribute($request['gender']);
         $user->save();
         return redirect(route('users.show',$user));
     }

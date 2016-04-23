@@ -33,29 +33,7 @@
             input-md']) !!}
         </div>
     </div>
-
-    <div class="form-group">
-        <label class="col-md-4 control-label">Gender</label>
-
-        <div class="col-md-3">
-            <label class="radio-inline">
-                @if($user->isMale())
-                    <input type="radio" name="gender" value="Male" checked="">Male
-                @else
-                    <input type="radio" name="gender" value="Male">Male
-                @endif
-            </label>
-            <label class="radio-inline">
-                @if($user->isMale())
-                    <input type="radio" name="gender" value="Female">Female
-                @else
-                    <input type="radio" name="gender" value="Female" checked="">Female
-                @endif
-            </label>
-        </div>
-    </div>
-
-
+    
     <div class="form-group">
         <div class="col-lg-offset-5">
             <button type="submit" class="btn btn-primary">

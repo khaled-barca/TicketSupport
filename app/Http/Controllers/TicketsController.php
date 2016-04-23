@@ -8,6 +8,7 @@ use App\TicketReply;
 use App\Http\Requests\CreateTicketRequest;
 use App\Ticket;
 use App\User;
+use App\Customer;
 use Auth;
 class TicketsController extends Controller
 {
@@ -41,6 +42,17 @@ class TicketsController extends Controller
     }
     public function destroy(Ticket $ticket){
         $ticket->delete();
+        return redirect(action('HomeController@index'));
+    }
+    public function store(CreateTicketRequest $request,Ticket $ticket){
+        $ticket->project_id = $request->project_id;
+        $ticket->customer_id = $request->customer_id;
+        $ticket->support_id = $request->support_id;
+        $ticket->status = $request->status;
+        $ticket->urgency = $request->urgency;
+        $ticket->body = $request->body;
+        $ticket->status_id = $request->status_id;
+        $ticket->save();
         return redirect(action('HomeController@index'));
     }
 }
