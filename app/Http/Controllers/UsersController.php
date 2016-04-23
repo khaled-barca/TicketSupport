@@ -33,21 +33,19 @@ class UsersController extends Controller
 
     public function update(Request $request, User $user){
         $validations = [
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'gender' => 'required',
+            'first_name' => ['required','min:2','max:15'],
+            'last_name' => ['required','min:2','max:15'],
             'date_of_birth' => 'required|date'
         ];
         $this->validate($request,$validations);
         $user->update($request->all());
-        if($request['gender'] == "Male"){
-            $user->gender = Genders::Male;
-        }
-        else{
-            $user->gender = Genders::Female;
-        }
         $user->save();
         return redirect(route('users.show',$user));
+    }
+
+    public function destroy(User $user){
+        $user->delete();
+        return redirect()->route('home')->with("message","User successfully deleted");
     }
 
 }

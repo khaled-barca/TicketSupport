@@ -27,18 +27,24 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li><a href="{{route('home')}}"><i class="fa fa-book"></i> <span>Home</span></a></li>
+            <li><a href="{{route('home')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Projects</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-angle-down"></i> <span>Projects</span>
                 </a>
                 <ul class="treeview-menu">
+                    @if(Auth::user()->isAdministrator())
+                        <li><a href="{{route('projects.create')}}"><i class="fa fa-plus"></i><span>Create Project</span></a></li>
+                    @endif
                     @foreach($projects as $project)
                         <li><a href="{{route('projects.show',[$project->id])}}">{{$project->name}}</a></li>
                     @endforeach
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-book"></i> <span>Tweets</span></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i> <span>Tweets</span></a></li>
+            @if(Auth::user()->isAdministrator())
+                <li><a href="{{action("InvitationsController@create")}}"><i class="fa fa-user-plus"></i> <span>Add new User</span></a></li>
+            @endif
         </ul>
     </section>
     <!-- /.sidebar -->

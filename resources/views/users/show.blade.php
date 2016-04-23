@@ -48,6 +48,15 @@
                 </div>
             </div>
 
+            <div class="info-group">
+                <label class="col-md-4 control-label">Role</label>
+
+                <div class="col-md-6">
+                    <label class="col-md-4 control-label">{{$user->role}}</label>
+                </div>
+            </div>
+
+
             @if($user->id == Auth::user()->id)
                 <div class="info-group col-md-4 col-lg-offset-4">
                     <a href="{{route('users.edit',$user)}}">
@@ -55,6 +64,15 @@
                             Edit Info
                         </button>
                     </a>
+                </div>
+            @endif
+
+            @if(Auth::user()->isAdministrator() && Auth::user()->id != $user->id && !($user->isAdministrator()))
+                <div class="info-group col-md-4 col-lg-offset-4">
+                    {!! Form::open(['class' => 'form-horizontal', 'method' => 'DELETE', 'route' =>
+                    ['users.destroy',$user]])!!}
+                    {!! Form::submit('Delete User', ['class'=>'btn btn-danger btn-mini']) !!}
+                    {!! Form::close() !!}
                 </div>
             @endif
         </div>
