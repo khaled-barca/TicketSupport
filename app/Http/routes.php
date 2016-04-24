@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/','HomeController@index');
-Route::get('/index2','HomeController@index2');
+Route::get('/',['as' => 'home','uses' => 'HomeController@index']);
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -23,16 +22,20 @@ Route::resource('users','UsersController');
 Route::resource('tickets','TicketsController');
 Route::resource('projects','ProjectsController');
 Route::resource('customers','CustomersController');
-Route::resource('ticket_replies','TicketRepliesController');
+Route::resource('tickets.ticket_replies','TicketRepliesController');
 
+Route::get('/invitations/create','InvitationsController@create');
+Route::post('/invitations/store','InvitationsController@store');
+Route::get('/invitations/{token}','InvitationsController@accept');
 
-Route::get('ticket/{id}/handle', [
+Route::get('{ticket}/paypal','PaypalController@getCheckout');
+Route::get('{ticket}/finish','PaypalController@getDone');
+Route::get('cancel','PaypalController@getCancel');
+Route::get('twitter', 'TwitterController@receive');
+Route::get('tweet', 'TicketRepliesController@tweet');
+Route::get('tickets/claimTicket/{TicketId}', [
     'as'    => 'assign', //php artisan make:controller AyahController
-    'uses'  =>  'TestController@test'
+    'uses'  =>  'TicketsController@claimTicket'
 ]);
 
-Route::get('Users/claimTicket/{TicketId}', [
-    'as'    => 'assign', //php artisan make:controller AyahController
-    'uses'  =>  'UsersController@claimTicket'
-]);
-//w
+
