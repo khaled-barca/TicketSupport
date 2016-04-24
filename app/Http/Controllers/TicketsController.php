@@ -20,10 +20,14 @@ class TicketsController extends Controller
             $user = User::find($ticketReply->user_id);
              array_push($users,$user);
         }
+      
         return view('tickets.show', [
         'ticket_replies' => $ticket_replies,
         'ticket' => $ticket,
-        'users' => $users
+        'users' => $users,
+        'agents'=>User::where('role','Support Agent')->lists('first_name', 'id')
+                //->where('role','Support Agent')
+               
     ]);
     }
     public function edit(Ticket $ticket){
@@ -52,6 +56,18 @@ class TicketsController extends Controller
            //a $ticket->fill($request->all());
 
         $ticket->support_id = Auth::user()->id;
+      
+        $ticket->save();
+      
+        return redirect(action('HomeController@index'));
+    }
+     public function claimTicket2(Request $request) {
+        $ticket = Ticket::find($request->TicketId);
+        //$user = Auth::user();
+        //will be automatic from current login user i  test  with 1
+           //a $ticket->fill($request->all());
+
+        $ticket->support_id = $request->agent;
       
         $ticket->save();
       

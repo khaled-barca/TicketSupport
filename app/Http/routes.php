@@ -37,5 +37,9 @@ Route::get('tickets/claimTicket/{TicketId}', [
     'as'    => 'assign', //php artisan make:controller AyahController
     'uses'  =>  'TicketsController@claimTicket'
 ]);
+Route::get('tickets/claimTicket2/{TicketId}', [
+    'as'    => 'assign', //php artisan make:controller AyahController
+    'uses'  =>  'TicketsController@claimTicket2'
+]);
 
 

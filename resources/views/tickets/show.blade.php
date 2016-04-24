@@ -51,9 +51,14 @@
             @endif
             
              @if(Auth::user()->isSupportSupervisor())
-             {{ Form::open(array('route' => array('tickets.take', $ticket->id), 'method' => 'GET')) }}
-    {{ method_field('DELETE') }}
+             
+
+    {{ Form::open(array('url' => array('tickets/claimTicket2', $ticket->id), 'method' => 'GET')) }}
+    {{ Form::select('agent', $agents) }}
+
     {{ Form::submit('take ticket') }}
+            
+          
             
             @endif
 @endsection
