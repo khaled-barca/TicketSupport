@@ -32,9 +32,15 @@
                                 href="{{route('users.show',$support)}}">{{$support->fullName()}}</a> </span>
                 @endif
             @else
-                <a class="pull-right" href="#">Claim Ticket</a>
+            
+            
+              
             @endif
+            
+            
+                
 
         </div>
     </div>
 </div>
+

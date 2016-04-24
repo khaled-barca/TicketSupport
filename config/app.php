@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'environment'),
 
     /*
     |--------------------------------------------------------------------------
@@ -157,7 +157,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Netshell\Paypal\PaypalServiceProvider::class,
+        //Netshell\Paypal\PaypalServiceProvider::class,
         'Thujohn\Twitter\TwitterServiceProvider',
 
     ],

@@ -22,6 +22,7 @@ class HomeController extends Controller
             return view('home.index',compact('tickets'));
         }
         else{
+           /// return view('home.index',compact('tickets'))->with('message','Welcome '. Auth::user()->fullName());
             return view('home.index',compact('tickets'))->with('message','Welcome '. Auth::user()->fullName());
         }
     }

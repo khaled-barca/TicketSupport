@@ -33,3 +33,13 @@ Route::get('{ticket}/finish','PaypalController@getDone');
 Route::get('cancel','PaypalController@getCancel');
 Route::get('twitter', 'TwitterController@receive');
 Route::get('tweet', 'TicketRepliesController@tweet');
+Route::get('tickets/claimTicket/{TicketId}', [
+    'as'    => 'assign', //php artisan make:controller AyahController
+    'uses'  =>  'TicketsController@claimTicket'
+]);
+Route::get('tickets/claimTicket2/{TicketId}', [
+    'as'    => 'assign', //php artisan make:controller AyahController
+    'uses'  =>  'TicketsController@claimTicket2'
+]);
+
+

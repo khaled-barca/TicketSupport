@@ -40,4 +40,25 @@
     {{ Form::submit('Delete ticket') }}
 
     {{ Form::close() }}
+    
+    @if(Auth::user()->isSupportAgent())
+           
+
+            {{ Form::open(array('url' => array('tickets/claimTicket', $ticket->id), 'method' => 'GET')) }}
+    
+    {{ Form::submit('take ticket') }}
+            
+            @endif
+            
+             @if(Auth::user()->isSupportSupervisor())
+             
+
+    {{ Form::open(array('url' => array('tickets/claimTicket2', $ticket->id), 'method' => 'GET')) }}
+    {{ Form::select('agent', $agents) }}
+
+    {{ Form::submit('take ticket') }}
+            
+          
+            
+            @endif
 @endsection

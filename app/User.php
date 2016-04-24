@@ -39,6 +39,9 @@ class User extends Authenticatable
         return $this->role == UserRoles::Administrator;
     }
 
+      //  return $this->role == UserRoles::SupportAgent;
+   // }
+
     public function isSupportAgent()
     {
         return $this->role == UserRoles::SupportAgent;
@@ -46,12 +49,7 @@ class User extends Authenticatable
 
     public function isSupportSupervisor()
     {
-        return $this->role == UserRoles::SupportSupervisor;
-    }
-
-    public function isMale()
-    {
-        return $this->gender == Genders::Male;
+         return $this->role == UserRoles::SupportSupervisor;
     }
 
     public function tickets()
@@ -64,23 +62,13 @@ class User extends Authenticatable
         return $this->hasMany('App\TicketReply');
     }
 
-    public function fullName()
+    public function isMale()
     {
-        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+        return $this->gender == Genders::Male;
     }
-
-    public function invitation()
+    
+    public function fullname()
     {
-        return $this->hasOne('App\Invitation');
+        return $this->first_name;
     }
-
-    public function setGenderAttribute($value)
-    {
-        if ($value == "Male") {
-            $this->gender = Genders::Male;
-        } else {
-            $this->gender = Genders::Female;
-        }
-    }
-
 }

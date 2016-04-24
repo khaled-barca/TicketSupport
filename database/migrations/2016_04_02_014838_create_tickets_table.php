@@ -14,7 +14,7 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('body');
+            $table->longText('body');
             $table->enum("status",["Opened", "Closed", "In Progress"]);
             $table->integer('urgency')->nullable();
             $table->date("progress_date")->nullable();

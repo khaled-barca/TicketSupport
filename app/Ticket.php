@@ -18,6 +18,8 @@ class Ticket extends Model
     public function customer(){
         return $this->belongsTo('App\Customer');
     }
+    
+   
 
     public function support(){
         return $this->belongsTo('App\User','support_id');
