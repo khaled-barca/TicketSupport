@@ -37,7 +37,6 @@
                     <!-- Chat box -->
                     @yield('body')
                     <!-- /.box (chat box) -->
-
                     <!-- quick email widget -->
 
                 </section>

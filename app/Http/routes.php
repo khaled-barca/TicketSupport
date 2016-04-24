@@ -11,11 +11,13 @@
 |
 */
 
+
 Route::get('/','HomeController@index');
-//Route::get('/index2','HomeController@index2');
 Route::get('tickets/create','TicketsController@create');
 Route::post('tickets','TicketsController@store');
 Route::get('tickets/ticket/index','TicketsController@index');
+
+Route::get('/',['as' => 'home','uses' => 'HomeController@index']);
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -26,3 +28,13 @@ Route::resource('tickets','TicketsController');
 Route::resource('projects','ProjectsController');
 Route::resource('customers','CustomersController');
 Route::resource('tickets.ticket_replies','TicketRepliesController');
+
+Route::get('/invitations/create','InvitationsController@create');
+Route::post('/invitations/store','InvitationsController@store');
+Route::get('/invitations/{token}','InvitationsController@accept');
+
+Route::get('{ticket}/paypal','PaypalController@getCheckout');
+Route::get('{ticket}/finish','PaypalController@getDone');
+Route::get('cancel','PaypalController@getCancel');
+Route::get('twitter', 'TwitterController@receive');
+Route::get('tweet', 'TicketRepliesController@tweet');
