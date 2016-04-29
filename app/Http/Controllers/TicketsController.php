@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\TicketReply;
@@ -53,6 +54,36 @@ class TicketsController extends Controller
         $ticket->body = $request->body;
         $ticket->status_id = $request->status_id;
         $ticket->save();
+        return redirect(action('HomeController@index'));
+    }
+
+    public function claimTicket(Request $request) {
+
+        if(Auth::user()->isSupportAgent() && Auth::user()->tickets()->get()->count() == 3){
+            return redirect(action('HomeController@index'))->with("warning","You already have 3 tickets assigned");
+        }
+        else{
+            $ticket = Ticket::find($request->TicketId);
+            //$user = Auth::user();
+            //will be automatic from current login user i  test  with 1
+            //a $ticket->fill($request->all());
+            $ticket->support_id = Auth::user()->id;
+            $ticket->progress_date = Carbon::now();
+
+            $ticket->save();
+            return redirect(action('HomeController@index'));
+        }
+
+    }
+    public function claimTicket2(Request $request) {
+        $ticket = Ticket::find($request->TicketId);
+        //$user = Auth::user();
+        //will be automatic from current login user i  test  with 1
+        //a $ticket->fill($request->all());
+        $ticket->support_id = $request->agent;
+        $ticket->progress_date = Carbon::now();
+        $ticket->save();
+
         return redirect(action('HomeController@index'));
     }
 }

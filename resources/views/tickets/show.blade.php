@@ -40,4 +40,6 @@
     {{ Form::submit('Delete ticket') }}
 
     {{ Form::close() }}
+
+
 @endsection
