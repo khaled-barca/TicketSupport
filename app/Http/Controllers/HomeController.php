@@ -18,13 +18,14 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $tickets = Ticket::all();
+        $allTickets = Ticket::all();
+        $myTickets = Auth::user()->tickets()->get();
         $agents = User::where('role','Support Agent')->lists('first_name', 'id');
         if(strpos(redirect()->back()->getTargetUrl(),'login') === false){
-            return view('home.index',compact('tickets','agents'));
+            return view('home.index',compact('allTickets','agents','myTickets'));
         }
         else{
-            return view('home.index',compact('tickets','agents'))->with('message','Welcome '. Auth::user()->fullName());
+            return view('home.index',compact('allTickets','agents','myTickets'))->with('message','Welcome '. Auth::user()->fullName());
         }
     }
 
