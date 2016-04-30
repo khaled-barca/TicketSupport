@@ -39,3 +39,5 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/bower_components/AdminLTE/dist/js/demo.js')}}"></script>
+
+<script src="{{asset('/bower_components/AdminLTE/dist/js/script.js')}}"></script>

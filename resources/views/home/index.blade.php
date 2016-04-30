@@ -9,25 +9,15 @@
 
         <div class="box-tools pull-right" data-toggle="tooltip" title="Tickets">
             <div class="btn-group" data-toggle="btn-toggle">
-                <button type="button" class="btn btn-default btn-sm active">My tickets</button>
-                <button type="button" class="btn btn-default btn-sm">All tickets</button>
+                <button type="button" class="btn btn-default btn-sm active" id="myTicketsButton">My tickets</button>
+                <button type="button" class="btn btn-default btn-sm" id="allTicketsButton">All tickets</button>
             </div>
         </div>
     </div>
 
-    <div class="box box-success">
-
-        @forelse($tickets as $ticket)
-            @include('partials.ticket')
-            @unless($tickets->last()->id == $ticket->id)
-                <hr>
-            @endunless
-        @empty
-            <h2>No Tickets to display.</h2>
-        @endforelse
-    </div>
+    @include('partials.tickets.index',['tickets' => $myTickets, 'id' => 'myTickets'])
+    @include('partials.tickets.index',['tickets' => $allTickets, 'id' => 'allTickets'])
     <!-- chat item -->
-
     <!-- /.chat -->
 
 @endsection
