@@ -10,6 +10,8 @@ use App\Project;
 use App\Ticket;
 use App\User;
 use \Twitter;
+use File;
+use App\Http\Requests\CreateSettingsRequest;
 class TwitterController extends Controller
 {
     //
@@ -35,6 +37,20 @@ class TwitterController extends Controller
         'tweets' => $temp,
         'result' => $result,
     ]);
-    }
+    }      
+    public function editSettings(){;
+        return view('twitter.edit');
+    }   
+      public function storeSettings(CreateSettingsRequest $request){;
+        $path = base_path('config/twitter.php');
+        $contents = File::get($path);
+        $contents = str_replace('%CONSUMER_KEY%', $request->consumer_key, $contents);
+        $contents = str_replace('%CONSUMER_SECRET%', $request->consumer_secret, $contents);
+        $contents = str_replace('%ACCESS_TOKEN%', $request->access_token, $contents);
+        $contents = str_replace('%ACCESS_TOKEN_SECRET%', $request->access_token_secret, $contents);
+        $path2 = base_path('config/ttwitter.php');
+        File::put($path2, $contents);
+        return redirect(action('HomeController@index'));
+    }   
     
 }
