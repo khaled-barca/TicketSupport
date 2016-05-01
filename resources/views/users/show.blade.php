@@ -77,6 +77,32 @@
             @endif
         </div>
     </div>
+    @if(Auth::user()->isAdministrator() || Auth::user()->isSupportSupervisor())
+        <h3>Agents Statistics</h3>
+        <div class="box box-success">
+            @if(@opened !== null)
+                <table border="1" style="width:100%">
+                    <tr> 
+                            <th> Agent Name </th>
+                            <th> Opened Tickets </th>
+                            <th> Closed Tickets </th>
+                            <th> In Progress Tickets </th>
+                    </tr>
+                    @forelse($opened as $key => $value) 
+                        <tr>
+                            <td>  {{$key}} </td>
+                            <td>   {{$value}} </td>
+                            <td> {{$closed[$key]}} </td>
+                            <td> {{$inProgress[$key]}} </td>
+                        </tr>
+                    @empty
+                        <h2>There are no agents on the system</h2>
+                    @endforelse
+                </table>
+            @endif
+        </div>
+    @endif
+
     <h3>Tickets</h3>
     <div class="box box-success">
         @forelse($tickets as $ticket)
