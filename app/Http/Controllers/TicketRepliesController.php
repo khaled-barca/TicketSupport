@@ -15,6 +15,10 @@ use App\Customer;
 class TicketRepliesController extends Controller
 {
     //
+    public function __construct(){
+        $this->middleware('ticketReply',['only' => 'store']);
+    }
+
     public function store(CreateTicketReplyRequest $request, Ticket $ticket){
         $ticketReply = new TicketReply;
         $ticketReply->reply = $request->reply;
