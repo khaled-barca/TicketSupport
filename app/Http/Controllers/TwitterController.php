@@ -15,6 +15,10 @@ use App\Http\Requests\CreateSettingsRequest;
 class TwitterController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
         public function receive(){
             Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json', 'contributor_details' => true]);
             $tweets = json_decode(Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json']), true);  
