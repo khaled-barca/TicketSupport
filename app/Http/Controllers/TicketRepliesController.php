@@ -17,6 +17,7 @@ class TicketRepliesController extends Controller
     //
     public function __construct(){
         $this->middleware('ticketReply',['only' => 'store']);
+        $this->middleware('auth');
     }
 
     public function store(CreateTicketReplyRequest $request, Ticket $ticket){

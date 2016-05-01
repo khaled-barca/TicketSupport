@@ -14,6 +14,12 @@ use Auth;
 class TicketsController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('supervisor',['only' => 'claimTicket2']);
+    }
+
     public function show(Ticket $ticket){
         $ticket_replies = TicketReply::where('ticket_id',$ticket->id)->get();
         $users = array();

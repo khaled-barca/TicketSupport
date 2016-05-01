@@ -25,6 +25,7 @@ class PaypalController extends Controller
             'log.FileName' => storage_path('logs/paypal.log'),
             'log.LogLevel' => 'FINE'
         ));
+        $this->middleware('auth');
 
     }
     public function getCheckout(Ticket $ticket)

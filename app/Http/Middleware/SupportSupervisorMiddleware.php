@@ -16,7 +16,7 @@ class SupportSupervisorMiddleware
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-        if($user->isSupportSupervisor()){
+        if($user->isSupportSupervisor() || $user->isAdministrator()){
             return $next($request);
         }
         return view('errors.401');

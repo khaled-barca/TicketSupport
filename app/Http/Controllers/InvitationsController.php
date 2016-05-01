@@ -14,6 +14,10 @@ use App\MailSender;
 class InvitationsController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth',['except' => 'accept']);
+    }
 
     public function create()
     {
