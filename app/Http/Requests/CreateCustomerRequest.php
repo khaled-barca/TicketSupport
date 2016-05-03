@@ -25,7 +25,7 @@ class CreateCustomerRequest extends Request
     {
         return [
             //
-            'name' => ['required','min:2','max:15'],
+            'screen_name' => ['required','min:2','max:15'],
             #'last_name' => ['required','min:2','max:15'],
             #'phone' => ['required','max:15','min:10']
         ];

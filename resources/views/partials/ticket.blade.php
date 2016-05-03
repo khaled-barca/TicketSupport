@@ -6,7 +6,7 @@
     <?php $diff = $ticket->progress_date->diffForHumans(Carbon\Carbon::now()); ?>
     <?php $diff = str_replace("before", "ago", $diff); ?>
 @endif
-<div class="box-body chat">
+<div class="box-body chat">              
     <div class="item">
         <img src="{{asset('/bower_components/AdminLTE/dist/img/default-avatar.jpg')}}" class="img-circle"
              alt="User Image">
@@ -27,7 +27,7 @@
                             href="{{route('projects.show',[$project->id])}}">{{$project->name}}</a> </span>
             <br/>
             @if($support)
-                <span class="pull-right">Progress date : {{$diff}}</span>
+                <span class="pull-right">Progress date : <?php echo @$diff ?></span>
                 <br/>
                 @if($support->id == Auth::user()->id)
                     <span class="pull-right">Assigned to : You</span>

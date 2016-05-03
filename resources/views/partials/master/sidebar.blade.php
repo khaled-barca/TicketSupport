@@ -1,4 +1,5 @@
 <?php $projects = \App\Project::all() ?>
+<?php $customers = \App\Customer::all() ?>
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -38,6 +39,19 @@
                     @endif
                     @foreach($projects as $project)
                         <li><a href="{{route('projects.show',[$project->id])}}">{{$project->name}}</a></li>
+                    @endforeach
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-angle-down"></i> <span>Customers</span>
+                </a>
+                <ul class="treeview-menu">
+                    @if(Auth::user()->isAdministrator())
+                        <li><a href="{{route('customers.create')}}"><i class="fa fa-plus"></i><span>Create Customer</span></a></li>
+                    @endif
+                    @foreach($customers as $customer)
+                        <li><a href="{{route('customers.show',[$customer->id])}}">{{$customer->screen_name}}</a></li>
                     @endforeach
                 </ul>
             </li>
