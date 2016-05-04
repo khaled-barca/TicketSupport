@@ -1,5 +1,6 @@
 <?php $user = Auth::user();
-        $notifications = \DB::select('select * from notifications where user_id = :id', ['id' => $user->id]); 
+        //$notifications = \DB::select('select * from notifications where user_id = :id', ['id' => $user->id]); 
+                $notifications = DB::table('notifications')->orderBy('id','desc')->where('user_id',$user->id)->get();
         $not_seen_notifications = \DB::select('select * from notifications where user_id = :id and seen = "No"',['id'=> $user->id])?>
 <header class="main-header">
     <!-- Logo -->
@@ -24,7 +25,7 @@
                         <span class="label label-warning">{{count($not_seen_notifications)}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have {{count($not_seen_notifications)}} notifications</li>
+                        <li class="header">You have {{count($not_seen_notifications)}} new notifications</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
@@ -40,7 +41,6 @@
 
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">View all</a></li>
                     </ul>
                 </li>
                 <!-- Tasks: style can be found in dropdown.less -->
