@@ -10,6 +10,7 @@ use App\Http\Requests\CreateTicketRequest;
 use App\Ticket;
 use App\User;
 use App\Customer;
+use App\Notification;
 use Auth;
 class TicketsController extends Controller
 {
@@ -41,6 +42,36 @@ class TicketsController extends Controller
     ]);
     }
     public function update(CreateTicketRequest $request, Ticket $ticket){
+        if($ticket->support_id != $request->support_id)
+        {
+            $notification = new Notification;
+            $notification->body = "You have been assigned to an issue";
+            $notification->user_id = $request->support_id;
+            $notification->type = 1;
+            $notification->seen = "No";
+            $notification->url = "tickets/" + $request->id;
+            $notification->save();
+        }
+        if($ticket->status != $request->status && $request->status == 2)
+        {
+            $notification = new Notification;
+            $notification->body = "You have a closed issue";
+            $notification->user_id = $request->support_id;
+            $notification->type = 1;
+            $notification->seen = "No";
+            $notification->url = "tickets/" + $request->id;
+            $notification->save();
+        }
+        if($ticket->urgency != $request->urgency)
+        {
+            $notification = new Notification;
+            $notification->body = "You have a change in issue's urgency";
+            $notification->user_id = $request->support_id;
+            $notification->type = 1;
+            $notification->seen = "No";
+            $notification->url = "tickets/" + $request->id;
+            $notification->save();
+        }
         $ticket->support_id = $request->support_id;
         $ticket->status = $request->status;
         $ticket->urgency = $request->urgency;
@@ -75,8 +106,14 @@ class TicketsController extends Controller
             //a $ticket->fill($request->all());
             $ticket->support_id = Auth::user()->id;
             $ticket->progress_date = Carbon::now();
-
             $ticket->save();
+            $notification = new Notification;
+            $notification->user_id = $ticket->support_id;
+            $notification->body = "You have claimed a ticket";
+            $notification->url = "tickets/".$ticket->id;
+            $notification->seen = "No";
+            $notification->type = 1;
+            $notification->save();
             return redirect(action('HomeController@index'));
         }
 
@@ -89,7 +126,13 @@ class TicketsController extends Controller
         $ticket->support_id = $request->agent;
         $ticket->progress_date = Carbon::now();
         $ticket->save();
-
+        $notification = new Notification;
+        $notification->user_id = $ticket->support_id;
+        $notification->body = "You have been assigned a ticket";
+        $notification->url = "tickets/".$ticket->id;
+        $notification->seen = "No";
+        $notification->type = 1;
+        $notification->save();
         return redirect(action('HomeController@index'));
     }
 }
