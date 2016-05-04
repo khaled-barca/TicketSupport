@@ -45,7 +45,7 @@ class TicketsController extends Controller
         if($ticket->support_id != $request->support_id)
         {
             $notification = new Notification;
-            $notification->body = "You have been assigned to an issue";
+            $notification->body = "You have been assigned to a ticket";
             $notification->user_id = $request->support_id;
             $notification->type = 1;
             $notification->seen = "No";
@@ -55,7 +55,7 @@ class TicketsController extends Controller
         if($ticket->status != $request->status && $request->status == 2)
         {
             $notification = new Notification;
-            $notification->body = "You have a closed issue";
+            $notification->body = "You have a closed ticket";
             $notification->user_id = $request->support_id;
             $notification->type = 1;
             $notification->seen = "No";
@@ -65,7 +65,7 @@ class TicketsController extends Controller
         if($ticket->urgency != $request->urgency)
         {
             $notification = new Notification;
-            $notification->body = "You have a change in issue's urgency";
+            $notification->body = "You have a change in ticket's urgency";
             $notification->user_id = $request->support_id;
             $notification->type = 1;
             $notification->seen = "No";
