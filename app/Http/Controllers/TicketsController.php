@@ -133,6 +133,13 @@ class TicketsController extends Controller
         $notification->seen = "No";
         $notification->type = 1;
         $notification->save();
+        $notification2 = new Notification;
+        $notification2->user_id = Auth::user()->id;
+        $notification2->body = "You have claimed a ticket for another agent";
+        $notification2->url = "tickets/".$ticket->id;
+        $notification2->seen = "No";
+        $notification2->type = 1;
+        $notification2->save();
         return redirect(action('HomeController@index'));
     }
 }
