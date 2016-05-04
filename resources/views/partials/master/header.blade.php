@@ -1,3 +1,7 @@
+<?php $user = Auth::user();
+        //$notifications = \DB::select('select * from notifications where user_id = :id', ['id' => $user->id]); 
+                $notifications = DB::table('notifications')->orderBy('id','desc')->where('user_id',$user->id)->get();
+        $not_seen_notifications = \DB::select('select * from notifications where user_id = :id and seen = "No"',['id'=> $user->id])?>
 <header class="main-header">
     <!-- Logo -->
     <a href="{{route('home')}}" class="logo">
@@ -18,41 +22,25 @@
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning">10</span>
+                        <span class="label label-warning">{{count($not_seen_notifications)}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 10 notifications</li>
+                        <li class="header">You have {{count($not_seen_notifications)}} new notifications</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-aqua"></i> You've been assigned a ticket
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-warning text-yellow"></i> You can reassign a ticket to other agents
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-red"></i> You can close a ticket after resolving it
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-shopping-cart text-green"></i> You can invite other support agents
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-user text-red"></i> You can claim tickets
-                                    </a>
-                                </li>
+
+                                @foreach($notifications as $notification) 
+                                    <li>
+                                        <a href="{{$notification->url}}">
+                                            <i class="fa fa-users text-aqua"></i> {{$notification->body}}
+                                        </a>
+                                    </li>
+                                    <?php  DB::table('notifications')->where('id', $notification->id)->update(['seen' => "Yes"]); ?>
+                                @endforeach
+
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">View all</a></li>
                     </ul>
                 </li>
                 <!-- Tasks: style can be found in dropdown.less -->
