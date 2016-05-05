@@ -37,12 +37,11 @@ class TwitterController extends Controller
         'result' => $result,
     ]);
     }
-    public function editSettings()
-    {
+
+    public function editSettings(){
         return view('twitter.edit');
-    }
-    public function storeSettings(CreateSettingsRequest $request)
-    {
+    }   
+      public function storeSettings(CreateSettingsRequest $request){
         $path = base_path('config/twitter.php');
         $contents = File::get($path);
         $contents = str_replace('%CONSUMER_KEY%', $request->consumer_key, $contents);

@@ -1,12 +1,13 @@
 <?php $project = $ticket->project()->get()->first() ?>
 <?php $support = $ticket->support()->get()->first() ?>
 <?php $customer = $ticket->customer()->get()->first() ?>
+<?php $agents = App\User::where('role', 'Support Agent')->lists('first_name', 'id'); ?>
 <?php $show = strstr(Request::path(), 'tickets/') ?>
 @if($ticket->progress_date)
     <?php $diff = $ticket->progress_date->diffForHumans(Carbon\Carbon::now()); ?>
     <?php $diff = str_replace("before", "ago", $diff); ?>
 @endif
-<div class="box-body chat">
+<div class="box-body chat @if($ticket->support_id==0) ticketunclaimed @endif">
     <div class="item">
         <img src="{{asset('/bower_components/AdminLTE/dist/img/default-avatar.jpg')}}" class="img-circle"
              alt="User Image">
