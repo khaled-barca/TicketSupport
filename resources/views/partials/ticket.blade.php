@@ -1,6 +1,7 @@
 <?php $project = $ticket->project()->get()->first() ?>
 <?php $support = $ticket->support()->get()->first() ?>
 <?php $customer = $ticket->customer()->get()->first() ?>
+<?php $agents = App\User::where('role', 'Support Agent')->lists('first_name', 'id'); ?>
 <?php $show = strstr(Request::path(), 'tickets/') ?>
 @if($ticket->progress_date)
     <?php $diff = $ticket->progress_date->diffForHumans(Carbon\Carbon::now()); ?>

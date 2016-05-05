@@ -13,7 +13,8 @@
             @include('partials.ticket_reply')
         @endforeach
     </div>
-    @if($ticket->support()->get()->first()->id == Auth::user()->id)
+    <?php $support = $ticket->support()->get()->first() ?>
+    @if($support && $support->id == Auth::user()->id)
         <div class="box-footer">
             {{ Form::open(array('route' => array('tickets.ticket_replies.store', $ticket->id), 'method' => 'POST')) }}
             {!! csrf_field() !!}

@@ -22,11 +22,10 @@ class HomeController extends Controller
     {
         $allTickets = Ticket::all();
         $myTickets = Auth::user()->tickets()->get();
-        $agents = User::where('role', 'Support Agent')->lists('first_name', 'id');
         if (strpos(redirect()->back()->getTargetUrl(), 'login') === false) {
-            return view('home.index', compact('allTickets', 'agents', 'myTickets'));
+            return view('home.index', compact('allTickets', 'myTickets'));
         } else {
-            return view('home.index', compact('allTickets', 'agents', 'myTickets'))->with('message', 'Welcome ' . Auth::user()->fullName());
+            return view('home.index', compact('allTickets', 'myTickets'))->with('message', 'Welcome ' . Auth::user()->fullName());
         }
     }
 
