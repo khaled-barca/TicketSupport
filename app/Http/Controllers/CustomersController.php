@@ -16,6 +16,7 @@ class CustomersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin', ['except' => ['store', 'show']]);
     }
 
     public function store(CreateCustomerRequest $request)
@@ -34,6 +35,18 @@ class CustomersController extends Controller
             'agents' => $agents,
             'projects' => $projects
         ]);
+    }
+
+    public function store2(CreateCustomerRequest $request)
+    {
+        $customer = new Customer;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->phone = $request->phone;
+        $customer->screen_name = $request->screen_name;
+        $customer->save();
+
+        return redirect()->route("customers.show", $customer);
     }
 
     public function create()
@@ -64,9 +77,7 @@ class CustomersController extends Controller
         $customer->screen_name = $request->screen_name;
         $customer->save();
 
-        return view('customers.show', [
-            'customer' => $customer
-        ]);
+        return redirect()->route("customers.show", $customer)->with("message", "successfully uodated client's info");
     }
 
     public function destroy(Customer $customer)

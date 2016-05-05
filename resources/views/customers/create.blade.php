@@ -9,7 +9,7 @@
         <!-- Display Validation Errors -->
 
         <!-- New Task Form -->
-        <form action="{{ url('customers') }}" method="POST" class="form-horizontal">
+        <form action="{{ action('CustomersController@store2') }}" method="POST" class="form-horizontal">
             {!! csrf_field() !!}
 
             <!-- Task Name -->

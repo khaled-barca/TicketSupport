@@ -44,3 +44,4 @@ Route::get('tickets/claimTicket2/{TicketId}', [
     ]);
 Route::get('twitter/edit', 'TwitterController@editSettings');
 Route::post('twitter/store', 'TwitterController@storeSettings');
+Route::post('customers/store2', 'CustomersController@store2');

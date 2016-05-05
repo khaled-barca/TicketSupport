@@ -25,10 +25,7 @@ class CreateTicketRequest extends Request
     {
         return [
             //
-            'body' => ['required','min:10','max:255'],
-            'status' => 'required',
-            'end_date' => 'date',
-            'progress_date' => 'date'
+            'body' => ['required','min:5','max:255']
         ];
     }
 }
