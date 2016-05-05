@@ -21,7 +21,15 @@
 <!-- Daterange picker -->
 <link rel="stylesheet" href="{{asset('/bower_components/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css')}}">
 <!-- bootstrap wysihtml5 - text editor -->
-<link rel="stylesheet" href="{{asset('/bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+<link rel="stylesheet"
+      href="{{asset('/bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+<style>
+    .ticketunclaimed {
+        background-color: #a2d246;
+    }
+</style>
+

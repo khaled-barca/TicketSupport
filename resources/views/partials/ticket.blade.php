@@ -7,7 +7,7 @@
     <?php $diff = $ticket->progress_date->diffForHumans(Carbon\Carbon::now()); ?>
     <?php $diff = str_replace("before", "ago", $diff); ?>
 @endif
-<div class="box-body chat">
+<div class="box-body chat @if($ticket->support_id==0) ticketunclaimed @endif">
     <div class="item">
         <img src="{{asset('/bower_components/AdminLTE/dist/img/default-avatar.jpg')}}" class="img-circle"
              alt="User Image">
