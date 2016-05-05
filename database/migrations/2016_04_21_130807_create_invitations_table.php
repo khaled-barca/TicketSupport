@@ -17,7 +17,7 @@ class CreateInvitationsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('email')->unique();
             $table->string('token')->unique();
-            $table->enum('role',["Support Agent", "Support Supervisor","Administrator"]);
+            $table->enum('role', ["Support Agent", "Support Supervisor", "Administrator"]);
             $table->timestamps();
 
             $table->foreign('user_id')

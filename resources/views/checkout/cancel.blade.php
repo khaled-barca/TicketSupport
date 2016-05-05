@@ -2,23 +2,23 @@
 <html>
 <h2 style="text-align:center;padding-top:20px;">
 
-Purchase cancelled!
+    Purchase cancelled!
 
 </h2>
 
 <script type="text/javascript">
 
-var timer = 3; //seconds
+    var timer = 3; //seconds
 
- website = "http://www.twitter.com"
+    website = "http://www.twitter.com"
 
-function delayer() {
+    function delayer() {
 
- window.location = website;
+        window.location = website;
 
-}
+    }
 
-setTimeout('delayer()', 1000 * timer); 
+    setTimeout('delayer()', 1000 * timer);
 
 </script>
 </html>

@@ -1,4 +1,3 @@
-
 @extends('master')
 
 @section('body')
@@ -15,27 +14,27 @@
             <!-- Task Name -->
             <div class="form-group">
                 <div class="col-sm-6">
-                <label for="task-name" class="col-sm-3 control-label">First name</label>
+                    <label for="task-name" class="col-sm-3 control-label">First name</label>
 
-                
+
                     <input type="text" name="first_name" id="task-name" class="form-control">
                 </div>
-                <div class="col-sm-6">  
-                <label for="task-name" class="col-sm-3 control-label">Last name</label>
+                <div class="col-sm-6">
+                    <label for="task-name" class="col-sm-3 control-label">Last name</label>
 
-                
+
                     <input type="text" name="last_name" id="task-name" class="form-control">
                 </div>
-                <div class="col-sm-6">  
-                <label for="task-name" class="col-sm-3 control-label">Number</label>
+                <div class="col-sm-6">
+                    <label for="task-name" class="col-sm-3 control-label">Number</label>
                     <input type="number" name="phone" id="task-name" class="form-control">
                 </div>
-                <div class="col-sm-6">  
-                <label for="task-name" class="col-sm-3 control-label">Screen name</label>
+                <div class="col-sm-6">
+                    <label for="task-name" class="col-sm-3 control-label">Screen name</label>
                     <input type="text" name="screen_name" id="task-name" class="form-control">
                 </div>
- 
-                
+
+
             </div>
 
             <!-- Add Task Button -->

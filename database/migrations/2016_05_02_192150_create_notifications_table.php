@@ -16,7 +16,7 @@ class CreateNotificationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('body');
-            $table->enum("seen",["Yes", "No"]);
+            $table->enum("seen", ["Yes", "No"]);
             $table->integer('type')->unsigned();
             $table->string("url");
             $table->timestamps();

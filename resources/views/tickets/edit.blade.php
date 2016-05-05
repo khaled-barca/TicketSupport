@@ -41,7 +41,8 @@
                 <select name="status" class="form-control">
                     <option name="status" id="status" value="{{App\Enums\TicketStatus::Opened}}">Opened</option>
                     <option name="status" id="status" value="{{App\Enums\TicketStatus::Closed}}">Closed</option>
-                    <option name="status" id="status" value="{{App\Enums\TicketStatus::InProgress}}">In Progress</option>
+                    <option name="status" id="status" value="{{App\Enums\TicketStatus::InProgress}}">In Progress
+                    </option>
                 </select>
             </div>
         </div>

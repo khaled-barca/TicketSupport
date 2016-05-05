@@ -34,18 +34,23 @@
                 </a>
                 <ul class="treeview-menu">
                     @if(Auth::user()->isAdministrator())
-                        <li><a href="{{route('projects.create')}}"><i class="fa fa-plus"></i><span>Create Project</span></a></li>
+                        <li><a href="{{route('projects.create')}}"><i class="fa fa-plus"></i><span>Create Project</span></a>
+                        </li>
                     @endif
                     @foreach($projects as $project)
                         <li><a href="{{route('projects.show',[$project->id])}}">{{$project->name}}</a></li>
                     @endforeach
                 </ul>
             </li>
-            <li><a href={{action('TwitterController@receive')}}><i class="fa fa-twitter"></i> <span>Tweets</span></a></li>
+            <li><a href={{action('TwitterController@receive')}}><i class="fa fa-twitter"></i> <span>Tweets</span></a>
+            </li>
             @if(Auth::user()->isAdministrator())
-                <li><a href="{{action("InvitationsController@create")}}"><i class="fa fa-user-plus"></i> <span>Add new User</span></a></li>
-                <li><a href="{{action("CustomersController@create")}}"><i class="fa fa-user-plus"></i> <span>Add new Customer</span></a></li>
-                <li><a href={{action('TwitterController@editSettings')}}><i class="fa fa-twitter"></i> <span>Change twitter settings</span></a></li>
+                <li><a href="{{action("InvitationsController@create")}}"><i class="fa fa-user-plus"></i> <span>Add new User</span></a>
+                </li>
+                <li><a href="{{action("CustomersController@create")}}"><i class="fa fa-user-plus"></i> <span>Add new Customer</span></a>
+                </li>
+                <li><a href={{action('TwitterController@editSettings')}}><i class="fa fa-twitter"></i> <span>Change twitter settings</span></a>
+                </li>
             @endif
         </ul>
     </section>

@@ -9,11 +9,13 @@ class TicketReply extends Model
     //
     protected $table = 'ticket_replies';
 
-    public function ticket(){
+    public function ticket()
+    {
         return $this->belongsTo('App\Ticket');
     }
 
-    public function support(){
-        return $this->belongsTo('App\User','user_id');
+    public function support()
+    {
+        return $this->belongsTo('App\User', 'user_id');
     }
 }

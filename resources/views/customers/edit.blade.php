@@ -20,13 +20,15 @@
                 <label for="task-name" class="col-sm-3 control-label">First name</label>
 
 
-                <input type="text" name="first_name" id="task-name" class="form-control" value="{{$customer->first_name}}">
+                <input type="text" name="first_name" id="task-name" class="form-control"
+                       value="{{$customer->first_name}}">
             </div>
             <div class="col-sm-6">
                 <label for="task-name" class="col-sm-3 control-label">Last name</label>
 
 
-                <input type="text" name="last_name" id="task-name" class="form-control" value="{{$customer->last_name}}">
+                <input type="text" name="last_name" id="task-name" class="form-control"
+                       value="{{$customer->last_name}}">
             </div>
             <div class="col-sm-6">
                 <label for="task-name" class="col-sm-3 control-label">Number</label>
@@ -34,9 +36,9 @@
             </div>
             <div class="col-sm-6">
                 <label for="task-name" class="col-sm-3 control-label">Screen name</label>
-                <input type="text" name="screen_name" id="task-name" class="form-control" value="{{$customer->screen_name}}">
+                <input type="text" name="screen_name" id="task-name" class="form-control"
+                       value="{{$customer->screen_name}}">
             </div>
-
 
 
             <!-- Add Task Button -->

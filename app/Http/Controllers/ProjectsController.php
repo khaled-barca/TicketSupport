@@ -13,9 +13,10 @@ use App\User;
 class ProjectsController extends Controller
 {
     //
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
-        $this->middleware('admin',['except' => ['show']]);
+        $this->middleware('admin', ['except' => ['show']]);
     }
 
     public function store(CreateProjectRequest $request)

@@ -8,7 +8,8 @@ class Project extends Model
 {
     //
 
-    public function tickets(){
+    public function tickets()
+    {
         return $this->hasMany('App\Ticket');
     }
 }

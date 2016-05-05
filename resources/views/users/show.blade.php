@@ -89,10 +89,10 @@
             @if(@opened !== null)
                 <table border="1" style="width:100%">
                     <tr>
-                            <th> Agent Name </th>
-                            <th> Opened Tickets </th>
-                            <th> Closed Tickets </th>
-                            <th> In Progress Tickets </th>
+                        <th> Agent Name</th>
+                        <th> Opened Tickets</th>
+                        <th> Closed Tickets</th>
+                        <th> In Progress Tickets</th>
                     </tr>
                     @forelse($opened as $key => $value)
                         <tr>
