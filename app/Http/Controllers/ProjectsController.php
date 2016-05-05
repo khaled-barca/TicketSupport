@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Requests\CreateProjectRequest;
 use App\Project;
 use App\Ticket;
@@ -13,22 +10,24 @@ use App\User;
 class ProjectsController extends Controller
 {
     //
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
-        $this->middleware('admin',['except' => ['show']]);
+        $this->middleware('admin', ['except' => ['show']]);
     }
 
     public function store(CreateProjectRequest $request)
     {
-        $project = new Project;
+        $project = new Project();
         $project->name = $request->name;
         $project->save();
         $tickets = array();
         $users = array();
+
         return view('projects.show', [
             'tickets' => $tickets,
             'project' => $project,
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
@@ -45,10 +44,11 @@ class ProjectsController extends Controller
             $user = User::find($ticket->support_id);
             array_push($users, $user);
         }
+
         return view('projects.show', [
             'tickets' => $tickets,
             'project' => $project,
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
@@ -62,16 +62,18 @@ class ProjectsController extends Controller
             $user = User::find($ticket->support_id);
             array_push($users, $user);
         }
+
         return view('projects.show', [
             'tickets' => $tickets,
             'project' => $project,
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
     public function destroy(Project $project)
     {
         $project->delete();
+
         return redirect(action('HomeController@index'));
     }
 
