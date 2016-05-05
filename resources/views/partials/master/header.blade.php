@@ -21,7 +21,7 @@ $not_seen_notifications = \DB::select('select * from notifications where user_id
             <ul class="nav navbar-nav">
                 <!-- Notifications: style can be found in dropdown.less -->
                 <li class="dropdown notifications-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" id="notifications" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
                         @if(count($not_seen_notifications) > 0)
                             <span class="label label-warning">{{count($not_seen_notifications)}}</span>

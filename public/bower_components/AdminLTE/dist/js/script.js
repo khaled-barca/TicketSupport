@@ -13,4 +13,8 @@ $("document").ready(function(){
         $("#myTickets").hide();
     });
 
+    $("#notifications").on('click', function () {
+        $(".label-warning.label").text("");
+    });
+
 });

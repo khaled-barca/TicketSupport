@@ -28,7 +28,7 @@ class CreateCustomerRequest extends Request
             'screen_name' => ['required','min:2','max:255'],
             #'first_name' => ['required','min:2','max:255'],
             #'last_name' => ['required','min:2','max:255'],
-            'phone' => ['required','max:255','min:5','unique']
+            #'phone' => ['required','max:255','min:5','unique']
         ];
     }
 }
