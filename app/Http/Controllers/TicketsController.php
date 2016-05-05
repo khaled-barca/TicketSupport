@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TicketStatus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -75,6 +76,7 @@ class TicketsController extends Controller
         $ticket->support_id = $request->support_id;
         $ticket->status = $request->status;
         $ticket->urgency = $request->urgency;
+        $ticket->body = $request->body;
         $ticket->save();
         return redirect(action('HomeController@index'));
     }
@@ -106,6 +108,7 @@ class TicketsController extends Controller
             //a $ticket->fill($request->all());
             $ticket->support_id = Auth::user()->id;
             $ticket->progress_date = Carbon::now();
+            $ticket->status = TicketStatus::InProgress;
             $ticket->save();
             $notification = new Notification;
             $notification->user_id = $ticket->support_id;
@@ -125,6 +128,7 @@ class TicketsController extends Controller
         //a $ticket->fill($request->all());
         $ticket->support_id = $request->agent;
         $ticket->progress_date = Carbon::now();
+        $ticket->status = TicketStatus::InProgress;
         $ticket->save();
         $notification = new Notification;
         $notification->user_id = $ticket->support_id;
