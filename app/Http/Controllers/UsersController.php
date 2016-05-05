@@ -20,7 +20,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin',['only' => 'destroy']);
+        $this->middleware('admin', ['only' => 'destroy','editRole','UpdateRole']);
     }
 
     public function show(User $user)
@@ -30,41 +30,38 @@ class UsersController extends Controller
         $opened = array();
         $closed = array();
         $inProgress = array();
-        $user = Auth::user();
-       // $notifications = \DB::select('select * from notifications where user_id = :id', ['id' => $user->id]);
-        if($user->isAdministrator() || $user->isSupportSupervisor()) {
+        //$user = Auth::user();
+        // $notifications = \DB::select('select * from notifications where user_id = :id', ['id' => $user->id]);
+        if ($user->isAdministrator() || $user->isSupportSupervisor()) {
             foreach ($users as $u) {
                 if ($u->role == 'Support Agent') {
                     $tickets_user = \DB::select('select * from tickets where support_id = :id', ['id' => $u->id]);
                     $userName = $u->first_name . $u->last_name;
                     foreach ($tickets_user as $ticket) {
-                        if($ticket->status == 'Opened') {
-                            if(array_key_exists($userName, $opened)) {
+                        if ($ticket->status == 'Opened') {
+                            if (array_key_exists($userName, $opened)) {
                                 $opened[$userName] = $opened[$userName] + 1;
-                            }
-                            else {
-                               // echo("wesel opened");
+                            } else {
+                                // echo("wesel opened");
                                 $opened[$userName] = 1;
                                 $closed[$userName] = 0;
                                 $inProgress[$userName] = 0;
                             }
                         }
-                        if($ticket->status == 'Closed') {
-                            if(array_key_exists($userName, $closed)) {
+                        if ($ticket->status == 'Closed') {
+                            if (array_key_exists($userName, $closed)) {
                                 $closed[$userName] = $closed[$userName] + 1;
-                            }
-                            else {
+                            } else {
                                 //echo("wesel hena kaman");
                                 $opened[$userName] = 0;
                                 $closed[$userName] = 1;
                                 $inProgress[$userName] = 0;
                             }
                         }
-                        if($ticket->status == 'In Progress') {
-                            if(array_key_exists($userName, $inProgress)) {
+                        if ($ticket->status == 'In Progress') {
+                            if (array_key_exists($userName, $inProgress)) {
                                 $inProgress[$userName] = $inProgress[$userName] + 1;
-                            }
-                            else {
+                            } else {
                                 //echo("wesell");
                                 $opened[$userName] = 0;
                                 $closed[$userName] = 0;
@@ -104,6 +101,22 @@ class UsersController extends Controller
     {
         $user->delete();
         return redirect()->route('home')->with("message", "User successfully deleted");
+    }
+
+    public function editRole(User $user)
+    {
+        return view("users.editRole", compact('user'));
+    }
+
+    public function UpdateRole(Request $request, User $user)
+    {
+        $validations = [
+            'role' => 'required'
+        ];
+        $this->validate($request, $validations);
+        $user->role = $request->all()["role"];
+        $user->save();
+        return redirect()->route("users.show", $user);
     }
 
 }

@@ -74,6 +74,12 @@
                     {!! Form::submit('Delete User', ['class'=>'btn btn-danger btn-mini']) !!}
                     {!! Form::close() !!}
                 </div>
+                <div class="info-group col-md-4 col-lg-offset-4">
+                    {!! Form::open(['class' => 'form-horizontal', 'method' => 'GET', 'action' =>
+                    ['UsersController@editRole',$user]])!!}
+                    {!! Form::submit('Edit User', ['class'=>'btn btn-danger btn-mini']) !!}
+                    {!! Form::close() !!}
+                </div>
             @endif
         </div>
     </div>
@@ -82,13 +88,13 @@
         <div class="box box-success">
             @if(@opened !== null)
                 <table border="1" style="width:100%">
-                    <tr> 
+                    <tr>
                             <th> Agent Name </th>
                             <th> Opened Tickets </th>
                             <th> Closed Tickets </th>
                             <th> In Progress Tickets </th>
                     </tr>
-                    @forelse($opened as $key => $value) 
+                    @forelse($opened as $key => $value)
                         <tr>
                             <td>  {{$key}} </td>
                             <td>   {{$value}} </td>
