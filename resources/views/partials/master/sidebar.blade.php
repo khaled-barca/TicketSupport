@@ -41,9 +41,10 @@
                     @endforeach
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-twitter"></i> <span>Tweets</span></a></li>
+            <li><a href={{action('TwitterController@receive')}}><i class="fa fa-twitter"></i> <span>Tweets</span></a></li>
             @if(Auth::user()->isAdministrator())
                 <li><a href="{{action("InvitationsController@create")}}"><i class="fa fa-user-plus"></i> <span>Add new User</span></a></li>
+                <li><a href={{action('TwitterController@editSettings')}}><i class="fa fa-twitter"></i> <span>Change twitter settings</span></a></li>
             @endif
         </ul>
     </section>
